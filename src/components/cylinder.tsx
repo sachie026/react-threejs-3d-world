@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { BufferGeometry, Mesh } from "three";
 
 function Cylinder() {
-  const cylinderRef = useRef<Mesh<BufferGeometry>>();
+  const cylinderRef = useRef<Mesh>(null!);
   useFrame((state, delta) => {
     if (cylinderRef.current) {
       cylinderRef.current.rotation.y += delta;

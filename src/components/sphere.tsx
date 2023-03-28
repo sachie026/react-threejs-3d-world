@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { BufferGeometry, Mesh } from "three";
 
 function Sphere() {
-  const sphereRef = useRef<Mesh<BufferGeometry>>();
+  const sphereRef = useRef<Mesh>(null!);
   useFrame((state, delta) => {
     if (sphereRef.current) {
       sphereRef.current.rotation.y += delta;

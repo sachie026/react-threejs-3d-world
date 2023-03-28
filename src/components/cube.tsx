@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { BufferGeometry, Mesh } from "three";
 
 function Cube() {
-  const cubeRef = useRef<Mesh<BufferGeometry>>();
+  const cubeRef = useRef<Mesh>(null!);
   useFrame((state, delta) => {
     if (cubeRef.current) {
       cubeRef.current.rotation.y += delta;
