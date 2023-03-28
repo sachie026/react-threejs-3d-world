@@ -1,40 +1,31 @@
-// import React, { useRef, useState } from "react";
+// import React, { useRef } from "react";
 // import { useFrame } from "@react-three/fiber";
+// // import { useBox } from "@react-three/cannon";
+// import "../style/styles.css";
+// import { BufferGeometry, Mesh } from "three";
 
-// interface CylinderProps {}
-
-// function Cylinder3d({}: CylinderProps) {
-//   // This reference gives us direct access to the THREE.Mesh object
-//   const ref = useRef();
-
-//   // Hold state for hovered and clicked events
-//   const [hovered, hover] = useState(false);
-//   const [clicked, click] = useState(false);
-
-//   // Subscribe this component to the render-loop, rotate the mesh every frame
-//   useFrame((state, delta) =>
-//     ref.current && ref.current.rotation
-//       ? (ref.current.rotation.x += 0.01)
-//       : null
-//   );
-
-//   // Return the view, these are regular Threejs elements expressed in JSX
+// function Cylinder() {
+//   const cubeRef = useRef<Mesh<BufferGeometry>>();
+//   useFrame((state, delta) => {
+//     if (cubeRef.current) {
+//       cubeRef.current.rotation.y += delta;
+//     }
+//     console.log("useframe", state, delta);
+//   });
+//   //   const [ref] = useBox(() => ({ position: [0, 0, 0] }));
 //   return (
 //     <mesh
-//       // {...props}
-//       ref={ref}
-//       scale={clicked ? 1.5 : 1}
-//       onClick={(event) => click(!clicked)}
-//       onPointerOver={(event) => hover(true)}
-//       onPointerOut={(event) => hover(false)}
+//       //   onClick={() => {
+//       //     api.velocity.set(0, 2, 0);
+//       //   }}
+//       //   ref={cubeRef as React.RefObject<Mesh<BufferGeometry>>}
+//       ref={cubeRef}
+//       //   position={[2, 0, 0]}
 //     >
-//       <cylinderGeometry args={[1, 1, 1]} />
-//       <meshStandardMaterial
-//         // wireframe={props.wireframe}
-//         color={hovered ? "hotpink" : "orange"}
-//       />
+//       <boxCy attach="geometry" />
+//       <meshStandardMaterial attach="material" color="yellow" />
 //     </mesh>
 //   );
 // }
 
-// export default Cylinder3d;
+// export default Cylinder;
