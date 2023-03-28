@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-// import { useBox } from "@react-three/cannon";
-import "../style/styles.css";
 import { BufferGeometry, Mesh } from "three";
 
 function Cube() {
@@ -10,7 +8,7 @@ function Cube() {
     if (cubeRef.current) {
       cubeRef.current.rotation.y += delta;
     }
-    console.log("useframe", state, delta);
+    // console.log("useframe", state, delta);
   });
   //   const [ref] = useBox(() => ({ position: [0, 0, 0] }));
   return (
@@ -20,7 +18,7 @@ function Cube() {
       //   }}
       //   ref={cubeRef as React.RefObject<Mesh<BufferGeometry>>}
       ref={cubeRef}
-      //   position={[2, 0, 0]}
+      position={[2, 0, 0]}
     >
       <boxGeometry attach="geometry" />
       <meshStandardMaterial attach="material" color="yellow" />
