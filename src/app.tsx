@@ -21,9 +21,11 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const updatedValue = (
-        Math.random() *
-        (GEOMETRY_MAXIMUM_SIZE - GEOMETRY_MINIMUM_SIZE + GEOMETRY_MAXIMUM_SIZE)
-      ).toFixed(4);
+        Math.random() * (GEOMETRY_MAXIMUM_SIZE - GEOMETRY_MINIMUM_SIZE) +
+        GEOMETRY_MINIMUM_SIZE
+      ).toFixed(3);
+
+      console.log(updatedValue);
 
       sizeRef.current = parseFloat(updatedValue);
       setForceUpdate(Date.now());
@@ -36,7 +38,7 @@ function App() {
     <Canvas>
       <OrbitControls />
       <Stars />
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={0.3} />
       <spotLight position={[10, 15, 10]} angle={0.5} />
 
       <Cube color={COLOR} width={sizeRef.current} />
