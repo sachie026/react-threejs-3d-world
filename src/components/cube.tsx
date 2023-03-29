@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { BufferGeometry, Mesh } from "three";
+import { Mesh } from "three";
 
 interface CubeProps {
   width?: number;
@@ -9,9 +9,8 @@ interface CubeProps {
 
 function Cube({ width, color }: CubeProps) {
   const cubeRef = useRef<Mesh>(null!);
-  console.log("width", width);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     cubeRef.current.rotation.y += delta;
   });
 

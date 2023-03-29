@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-// import { useBox } from "@react-three/cannon";
-// import "../style/styles.css";
 import { Mesh } from "three";
 
 interface CylinderProps {
@@ -11,9 +9,8 @@ interface CylinderProps {
 
 function Cylinder({ height, color }: CylinderProps) {
   const cylinderRef = useRef<Mesh>(null!);
-  console.log("height", height);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     cylinderRef.current.rotation.y = cylinderRef.current.rotation.x += delta;
   });
 

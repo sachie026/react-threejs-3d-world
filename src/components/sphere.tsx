@@ -9,12 +9,9 @@ interface SphereProps {
 
 function Sphere({ radius, color }: SphereProps) {
   const sphereRef = useRef<Mesh>(null!);
-  console.log("radius", radius);
 
-  useFrame((state, delta) => {
-    sphereRef.current.rotation.y += delta;
-    sphereRef.current.rotation.x += 1;
-    sphereRef.current.rotation.z += 2;
+  useFrame((_state, delta) => {
+    sphereRef.current.rotation.y = sphereRef.current.rotation.x += delta;
   });
 
   return (
