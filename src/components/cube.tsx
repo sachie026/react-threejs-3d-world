@@ -2,26 +2,24 @@ import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { BufferGeometry, Mesh } from "three";
 
-function Cube() {
+interface CubeProps {
+  width?: number;
+  color?: string;
+}
+
+function Cube({ width, color }: CubeProps) {
   const cubeRef = useRef<Mesh>(null!);
+  console.log("width", width);
+
   useFrame((state, delta) => {
-    if (cubeRef.current) {
-      cubeRef.current.rotation.y += delta;
-    }
-    // console.log("useframe", state, delta);
+    cubeRef.current.rotation.y += delta;
   });
-  //   const [ref] = useBox(() => ({ position: [0, 0, 0] }));
+
   return (
-    <mesh
-      //   onClick={() => {
-      //     api.velocity.set(0, 2, 0);
-      //   }}
-      //   ref={cubeRef as React.RefObject<Mesh<BufferGeometry>>}
-      ref={cubeRef}
-      position={[2, 0, 0]}
-    >
-      <boxGeometry attach="geometry" />
-      <meshStandardMaterial attach="material" color="yellow" />
+    <mesh ref={cubeRef} position={[0, 0, 0]}>
+      {/* boxGeometry args: width, height, depth */}
+      <boxGeometry attach="geometry" args={[width, 1, 1]} />
+      <meshStandardMaterial attach="material" color={color} />
     </mesh>
   );
 }

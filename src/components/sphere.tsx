@@ -1,29 +1,27 @@
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-// import { useBox } from "@react-three/cannon";
-// import "../style/styles.css";
-import { BufferGeometry, Mesh } from "three";
+import { Mesh } from "three";
 
-function Sphere() {
+interface SphereProps {
+  radius?: number;
+  color?: string;
+}
+
+function Sphere({ radius, color }: SphereProps) {
   const sphereRef = useRef<Mesh>(null!);
+  console.log("radius", radius);
+
   useFrame((state, delta) => {
-    if (sphereRef.current) {
-      sphereRef.current.rotation.y += delta;
-    }
-    console.log("useframe", state, delta);
+    sphereRef.current.rotation.y += delta;
+    sphereRef.current.rotation.x += 1;
+    sphereRef.current.rotation.z += 2;
   });
-  //   const [ref] = useBox(() => ({ position: [0, 0, 0] }));
+
   return (
-    <mesh
-      //   onClick={() => {
-      //     api.velocity.set(0, 2, 0);
-      //   }}
-      //   ref={cubeRef as React.RefObject<Mesh<BufferGeometry>>}
-      ref={sphereRef}
-      position={[-3, 0, 0]}
-    >
-      <sphereGeometry attach="geometry" />
-      <meshStandardMaterial attach="material" color="red" />
+    <mesh ref={sphereRef} position={[-4, 0, 0]}>
+      {/* sphereGeometry args: radius, widthSegments, heightSegments */}
+      <sphereGeometry args={[radius, 30, 30]} attach="geometry" />
+      <meshStandardMaterial attach="material" color={color} />
     </mesh>
   );
 }
