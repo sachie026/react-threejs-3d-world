@@ -26,8 +26,8 @@ function App() {
   const [, setForceUpdate] = useState(Date.now());
   const sizeRef = useRef(DEFAULT_GEOMETRY_SIZE);
 
-  const socket = io.connect("https://number-generator-mocha.vercel.app:3000", {
-    transports: ["websocket"],
+  const socket = io.connect("https://number-generator-mocha.vercel.app", {
+    transports: ["polling"],
   });
 
   console.log("socket", socket);
